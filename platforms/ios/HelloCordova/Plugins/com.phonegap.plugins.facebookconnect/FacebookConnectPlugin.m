@@ -21,10 +21,11 @@
 
 @implementation FacebookConnectPlugin
 
-
-- (CDVPlugin *)initWithWebView:(UIWebView *)theWebView {
+- (void) pluginInitialize{
+    [super pluginInitialize];
+    
     NSLog(@"Init FacebookConnect Session");
-    self = (FacebookConnectPlugin *)[super initWithWebView:theWebView];
+    //self = (FacebookConnectPlugin *)[super initWithWebView:theWebView];
     self.userid = @"";
     
     [FBSession openActiveSessionWithReadPermissions:nil
@@ -44,8 +45,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(openURL:)
                                                  name:CDVPluginHandleOpenURLNotification object:nil];
-    return self;
 }
+
 
 - (void)openURL:(NSNotification *)notification {
     // NSLog(@"handle url: %@", [notification object]);
